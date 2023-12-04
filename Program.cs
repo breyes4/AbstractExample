@@ -3,26 +3,38 @@ using AbstractExample.Models;
 
 namespace AbstractExample
 {
-    internal class Program
+    public class Program
     {
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            Console.WriteLine("Which animal do you want to hear?");
+            Console.WriteLine("Which media type do you want to display (1/2/3) ?");
             var choice = Console.ReadLine();
 
-            Animal animal = null;
+            Media media = null;
 
-            if (choice == "1")
+            switch (choice)
             {
-                animal = new Pig();
-            }
-            else if (choice == "2")
-            {
-                animal = new Dog();
+                case "1":
+
+                    media = new Movie();
+                    media.ReadData();
+                    break;
+
+                case "2":
+                    media = new Show();
+                    media.ReadData();
+                    break;
+
+                case "3":
+                    media = new Video();
+                    media.ReadData();
+                    break;
+                default:
+                    Console.WriteLine("Please enter a number from 1 to 3.");
+                    break;
             }
 
-            animal?.MakeNoise();
-            animal?.Sleep();
+            media?.Display();
         }
     }
 }
